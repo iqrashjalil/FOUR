@@ -1,2 +1,4 @@
+# Define the build settings
 [build]
-root = "backend"
+dockerfile = "backend/Dockerfile"  # Path to your Dockerfile
+context = "backend"                # Set the root context to the backend folder
