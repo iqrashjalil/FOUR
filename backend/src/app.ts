@@ -13,7 +13,7 @@ import cors from "cors";
 const app = express();
 const port = process.env.PORT;
 const options = {
-  origin: "http://localhost:5173",
+  origin: "https://four-flame.vercel.app",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
 };

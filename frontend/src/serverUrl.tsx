@@ -1,1 +1,1 @@
-export const serverUrl = "http://localhost:3000";
+export const serverUrl = "https://four-production-3195.up.railway.app";
