@@ -14,7 +14,7 @@ export const sendToken = async (
     expires: new Date(Date.now() + cookieExpire * 24 * 60 * 60 * 1000),
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax" as const,
+    sameSite: "none" as const,
   };
 
   res.status(statusCode).cookie("token", token, options).json({
