@@ -1,21 +1,36 @@
 # Use a Node.js base image
-FROM node:18
+FROM node:18 as build
 
-# Set working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Copy package.json and package-lock.json to install dependencies
 COPY package*.json ./
+
+# Install dependencies (including devDependencies for TypeScript)
 RUN npm install
 
-# Copy the rest of the application source code
+# Copy the rest of the app's source code
 COPY . .
 
-# Build the TypeScript files to JavaScript
-RUN npm run build
+# Build the TypeScript code
+RUN npx tsc
 
-# Expose the port your app runs on
+# Use a minimal Node.js image for production
+FROM node:18-alpine as production
+
+# Set the working directory
+WORKDIR /app
+
+# Copy only the necessary files for running the app
+COPY --from=build /app/dist ./dist
+COPY package*.json ./
+
+# Install production dependencies only
+RUN npm install --omit=dev
+
+# Expose the application port
 EXPOSE 3000
 
-# Start the built app
+# Start the application
 CMD ["node", "dist/app.js"]
