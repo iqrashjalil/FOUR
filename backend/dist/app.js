@@ -17,7 +17,7 @@ const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 const options = {
-    origin: "https://four-flame.vercel.app",
+    origin: "https://fourrestaurant.netlify.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
 };
